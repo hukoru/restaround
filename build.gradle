@@ -1,0 +1,54 @@
+group 'com.restaround.backend'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+ext {
+    javaVersion = 1.8
+    springVersion = "4.3.0.RELEASE"
+    springsecurityVersion = "4.1.0.RELEASE"
+    tilesVersion = "3.0.5"
+    hibernateVersion="4.3.10.Final"
+}
+
+repositories {
+    jcenter()
+    mavenLocal()
+    mavenCentral()
+    maven { url "https://plugins.gradle.org/m2/" }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenLocal()
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath 'org.flywaydb:flyway-gradle-plugin:3.2.1'
+        classpath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.0.1'
+    }
+}
+
+subprojects {
+
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
+    repositories {
+        jcenter()
+        mavenLocal()
+        mavenCentral()
+        maven { url 'https://repo.spring.io/libs-milestone' }
+    }
+
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+    [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+}

@@ -1,0 +1,3 @@
+rootProject.name = 'restaround'
+
+include ':api', ':backoffice', ':batch', ':marketing'
